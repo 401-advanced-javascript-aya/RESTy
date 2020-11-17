@@ -33,15 +33,30 @@ class Main extends React.Component {
       const method = this.state.method;
   
       this.setState({ url , method }); /// {url:"reverse"}
+      fetch(`${url}`, {
+        method: method,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('Success:', data);
+          this.props.handler(data.count, data);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
       console.log('hello');
     };
     render() {
       return (
         <main>
-          <form>
-            <label>URL <input id='urlInput' type="text" onChange={this.handleChange} />
-            <button onClick={this.handleClick}>GO!</button></label><br></br><br></br>
-            <label class='labels' for="container1">GET<input value='GET' type="radio" id="container" name="radio" onChange={this.handleMethodChange}></input></label>
+          <form data-testid="ancestor">
+            <label>URL <input data-testid="descendantText" id='urlInput' type="text" onChange={this.handleChange} />
+            <button data-testid="descendantSubmit" onClick={this.handleClick}>GO!</button></label><br></br><br></br>
+            <label class='labels' for="container1">GET<input defaultChecked
+              aria-checked="true" data-testid="testId" value='GET' type="radio" id="container" name="radio" onChange={this.handleMethodChange}></input></label>
               <label class='labels' for="container2">POST<input value='POST' type="radio" id="container2" name="radio" onChange={this.handleMethodChange}></input></label>
               <label class='labels' for="container3">PUT<input value='PUT' type="radio" id="container3" name="radio" onChange={this.handleMethodChange}></input></label>
               <label class='labels' for="container4">DELETE<input value='DELETE' type="radio" id="container4" name="radio" onChange={this.handleMethodChange}></input></label>
