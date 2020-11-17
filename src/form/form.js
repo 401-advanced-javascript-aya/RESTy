@@ -15,7 +15,7 @@ class Main extends React.Component {
   
     handleChange = (e) => {
       // console.log('hi', this.state);
-      this.setState({ url: e.target.value });
+      this.setState({ url: e.target.url.value , body:e.target.body.value });
       /// DONT UPDATE THE STATE DIRECTLY
       // this.state.url = e.target.value;
       // console.log('helloooooo', this.state);
@@ -53,7 +53,8 @@ class Main extends React.Component {
       return (
         <main>
           <form data-testid="ancestor">
-            <label>URL <input data-testid="descendantText" id='urlInput' type="text" onChange={this.handleChange} />
+            <label>URL <input data-testid="descendantText" name='url' id='urlInput' type="text" onChange={this.handleChange} />
+            <label><input  id='bodyInput' name='body' type="text" onChange={this.handleChange} /></label>
             <button data-testid="descendantSubmit" onClick={this.handleClick}>GO!</button></label><br></br><br></br>
             <label class='labels' for="container1">GET<input defaultChecked
               aria-checked="true" data-testid="testId" value='GET' type="radio" id="container" name="radio" onChange={this.handleMethodChange}></input></label>

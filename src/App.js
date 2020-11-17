@@ -16,10 +16,11 @@ class App extends React.Component {
       count: 0,
       results: [],
       header: '',
+      body:{}
     };
   }
-  handleForm = (counting, resulting) => {
-    this.setState({ count: counting, results: resulting });
+  handleForm = (counting, resulting, body) => {
+    this.setState({ count: counting, results: resulting, body:body });
   };
   render() {
     return (
